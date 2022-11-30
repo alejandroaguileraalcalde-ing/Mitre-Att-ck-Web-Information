@@ -1,5 +1,5 @@
-# Mitre-Att-ck-Web-Information
-Get Mitre Att&amp;ck Information 
+# Mitre Att&ck Web Information
+Get Mitre Att&ck Information from its webpage into list, csv or xml files in Spanish.
 
 # How it works: 
 
