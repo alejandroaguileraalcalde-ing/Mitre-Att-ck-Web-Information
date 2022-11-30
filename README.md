@@ -5,7 +5,7 @@ Get Mitre Att&ck Information from its webpage into list, csv or xml files in Spa
 
 ## Individual search with a .txt file with multiple Mitigations, Groups, Detections, etc. that you want to be looked up.
 
-Needed: 
+Requirements: 
 
 
     Txt file with a list of Mitigations/Detection/Groups/Software that you want to search. 
@@ -27,7 +27,7 @@ This will generate a .csv file for earch search.
 
 Write into a .txt file (ex: Techniques_list_Filename.txt) a list of techniques and subtechniques that you want to be looked up.
 
-Needed: 
+Requirements: 
 
 
     Txt file with a list of Techniques/SubTechniques that you want to search. 
@@ -41,7 +41,7 @@ This will generate some .xml files with the information.
 
 ## individual search
 
-Needed: 
+Requirements: 
 
 
     None 
