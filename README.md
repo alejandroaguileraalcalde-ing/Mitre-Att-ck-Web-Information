@@ -31,6 +31,7 @@ Requirements:
 
 
     Txt file with a list of Techniques/SubTechniques that you want to search. 
+    Base_file.xml is a file that contains all previous Mitigations, Detections, Groups, Software and Techniques information that will be checked in order       to not duplicate searches. 
 
 Usage: 
 
