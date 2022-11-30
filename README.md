@@ -3,22 +3,24 @@ Get Mitre Att&amp;ck Information
 
 # How it works: 
 
-## individual search with a .txt file with multiple Mitigations, Groups, Detections, etc.
+## Individual search with a .txt file with multiple Mitigations, Groups, Detections, etc. that you want to be looked up.
 
 
-<b>Mitigation_info_txtFile('lista_Mitigaciones')</b>
+<b>Mitigation_info_txtFile('Mitigations_list_Filename')</b>
 
-<b>Detection_info_txtFile('lista_Detecciones')</b>
+<b>Detection_info_txtFile('Detection_list_Filename')</b>
 
-<b>Group_info_txtFile('lista_Grupos')</b>
+<b>Group_info_txtFile('Group_list_Filename')</b>
 
-<b>Software_info_txtFile('lista_Software')</b>
+<b>Software_info_txtFile('Software_list_Filename')</b>
 
 This will generate a .csv file for earch search. 
 
 ## Global information about techniques: Tactics, Mitigations, Detections, Groups, Software, etc.
 
-<b>Tecnicas_info_txtFile('tecnicas')</b>
+Write into a .txt file (ex: Techniques_list_Filename.txt) a list of techniques and subtechniques that you want to be looked up.
+
+<b>Tecnicas_info_txtFile('Techniques_list_Filename')</b>
 
 This will generate some .xml files with the information. 
 
