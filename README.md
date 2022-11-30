@@ -37,15 +37,15 @@ This will generate some .xml files with the information.
 ### Example:
 
 
-### Group_info ###
+### Group_info('G0032') ###
 ['G0032', 'Lazarus Group', 'NaN', 'NaN', 'Lazarus Group es un grupo de amenazas cibernéticas patrocinado por el estado de Corea del Norte que ha sido atribuido a la Oficina General de Reconocimiento.[1][2] El grupo ha estado activo desde al menos 2009 y, según los informes, fue responsable del destructivo ataque con limpiaparabrisas de noviembre de 2014 contra Sony Pictures Entertainment como parte de una campaña denominada Operación Blockbuster de Novetta. El malware utilizado por Lazarus Group se correlaciona con otras campañas informadas, incluidas Operation Flame, Operation 1Mission, Operation Troy, DarkSeoul y Ten Days of Rain. [3]', '31 May 2017', '23 August 2022', ': Labyrinth Chollima, HIDDEN COBRA, Guardians of Peace, ZINC, NICKEL ACADEMY']
 
-### Software_info ###
+### Software_info('S0691') ###
 ['S0691', 'Neoichor', 'MALWARE', 'Windows', 'Neoichor es un malware C2 utilizado por Ke3chang desde al menos 2019; familias de malware similares utilizadas por el grupo incluyen Leeson y Numbldea.[1]', '22 March 2022', '11 April 2022', 'NaN']
 
-### Detection_info ###
+### Detection_info('DS0017') ###
 ['DS0017', 'Command', 'Container, Host', 'Containers, Linux, Network, Windows, macOS', 'Una directiva dada a un programa de computadora, que actúa como un intérprete de algún tipo, para realizar una tarea específica[1][2]', 'Una directiva dada a un programa de computadora, que actúa como un intérprete de algún tipo, para realizar una tarea específica[1][2]', [['Command Execution', 'La ejecución de una línea de texto, potencialmente con argumentos, creada a partir del código del programa (por ejemplo, un cmdlet ejecutado a través de powershell.exe, comandos interactivos como &gt;dir, ejecuciones de shell, etc.)'], ['Command Execution', 'La ejecución de una línea de texto, potencialmente con argumentos, creada a partir del código del programa (por ejemplo, un cmdlet ejecutado a través de powershell.exe, comandos interactivos como &gt;dir, ejecuciones de shell, etc.)']], '20 October 2021', '21 October 2022']
 
-### Mitigation_info ###  
+### Mitigation_info('M1029') ###  
 ['M1029', 'Remote Data Storage', 'T1119', 'T1565/001, T1070/001', 'Utilice el registro de seguridad remoto y el almacenamiento de archivos confidenciales donde el acceso se puede controlar mejor para evitar la exposición de los datos del registro de detección de intrusos o la información confidencial.', '06 June 2019', '06 June 2019']
 
