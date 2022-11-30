@@ -12,37 +12,14 @@ import csv
 import subprocess
 
 
+CLEANR = re.compile('<.*?>') 
+technique = ''
 
-
-
-
-##creacion de csv para guardar resultados (solo primera vez, luego quitar):
-header1 = ['TACTICA', 'DESCRIPCIÓN TÁCTICA', 'TÉCNICA', 'DESCRIPCIÓN TÉCNICA', 'SUB-TÉCNICA', 'DESCRIPCIÓN SUB-TÉCNICA', 'PLATAFORMA', 'PROCEDIMIENTOS RELACIONADOS', 'MITIGACIONES RELACIONADAS', 'DETECCIONES RELACIONADAS', 'DEFENSAS QUE SUPERA', 'PERMISOS REQUERIDOS', 'SE PUEDE USAR EN REMOTO']
-header2 = ['IDENTIFICADOR', 'MITIGACIÓN', 'DESCRIPCIÓN', 'CONTROLES RELACIONADOS', 'TÉCNICAS MITIGADAS']
-header3 = ['IDENTIFICADOR', 'DATA COMPONENT', 'DESCRIPCIÓN DATA COMPONENT', 'DATA SOURCE', 'DESCRIPCIÓN DATA SOURCE', 'COLLECTION LAYER', 'TECNOLOGÍA', 'PLATAFORMA']
-header4 = ['IDENTIFICADOR', 'NOMBRE', 'DESCRIPCIÓN', 'SOFTWARE ASOCIADO', 'TIPO', 'TECNOLOGÍA', 'ADICIONAL']
-
-with open('Tacticas_y_tecnicas.csv', 'w', encoding='UTF8') as f:
-    writer = csv.writer(f)
-    writer.writerow(header1)
-with open('Mitigacion.csv', 'w', encoding='UTF8') as f:
-    writer = csv.writer(f)
-    writer.writerow(header2)
-with open('Deteccion.csv', 'w', encoding='UTF8') as f:
-    writer = csv.writer(f)
-    writer.writerow(header3)
-with open('Procedimientos.csv', 'w', encoding='UTF8') as f:
-    writer = csv.writer(f)
-    writer.writerow(header4)
-
-
-####
 
 def traducir(texto):
     translated = GoogleTranslator(source='auto', target='es').translate(texto)
     return translated
 
-CLEANR = re.compile('<.*?>') 
 
 def cleanhtml(raw_html):
   cleantext = re.sub(CLEANR, '', raw_html)
@@ -63,18 +40,8 @@ def borrar_fichero(fichero):
     process = subprocess.Popen(bashCommand.split(), stdout=subprocess.PIPE)
     output, error = process.communicate()  
 
-technique = ''
-"""
-try:
-    technique = sys.argv[1]
-except: 
-    print('Uso:\n')
-    print('python3  -W ignore mitreWeb.py <ID Tecnica>')
-    print('\nEj:\n')
-    print('python3  -W ignore mitreWeb.py T1044      ## Una tecnica')
-    print('python3  -W ignore mitreWeb.py T1021/004  ## Una subtecnica')
-    sys.exit()
-"""
+
+
 
 
 def proceso(technique, esSubtechnique, Technique_number, subTechnique_number):
@@ -530,19 +497,7 @@ def proceso(technique, esSubtechnique, Technique_number, subTechnique_number):
             uu = 0
             
             for a in tec_aux:
-                """
-                f = open("test6.txt", "w")
-                f.write(a)
-                f.close()
-                f = open("test7.txt", "w")
-                f.write(a.split('</tr>')[1])
-                f.close()
-                print('a.split()[0]')
-                print(a.split('</tr>')[1])
-                f = open("test8.txt", "w")
-                f.write(a.split('</tr>')[1].split('<a href=\"/techniques/')[1])
-                f.close()
-                """
+                
                 
                 try:
                     #techniques_mitigadas = a.split('</tr>')[0].split('<a href=\"/techniques/')[1].split('\">')[0]
@@ -592,66 +547,7 @@ def proceso(technique, esSubtechnique, Technique_number, subTechnique_number):
                 lista_mitigacion_nuevos_description.append('NaN')
     
 
-    """
-    print('\n****************************************')
-    print('lista de grupos ID comun...')
-    print('****************************************')
-    print(texto_lista_grupo_id)
-
-    print('\n****************************************')
-    print('lista de mitigacion ID comun...')
-    print('****************************************')
-    print(texto_lista_mitigacion_id)
-    """
-    """
-    print('\n\n----------------------------------------------------------------------')
-    print('PARTES EXCEL COMUN....')
-    print('----------------------------------------------------------------------\n')
-
-    print('\n****************************************')
-    print('nombre_tactica_asociada_completo')
-    print(nombre_tactica_asociada_completo)
-    print('****************************************')
-
-    print('\n****************************************')
-    print('descripcion_tactica_asociada..')
-    print(descripcion_tactica_asociada)
-    print('****************************************')
-
-
-    print('\n****************************************')
-    print('nombre_tecnica..')
-    print('****************************************')
-    print(technique +' - '+ nombre_tecnica)
-
-
-    print('\n****************************************')
-    print('lista de grupos ID comun...')
-    print('****************************************')
-    print(texto_lista_grupo_id)
-
-    print('\n****************************************')
-    print('lista de mitigacion ID comun...')
-    print('****************************************')
-    print(texto_lista_mitigacion_id)
-
-
-    print('\n****************************************')
-    print('lista de deteccion ID comun...')
-    print('****************************************')
-    print(texto_lista_deteccion_id)
-
-    print('\n****************************************')
-    print('Description comun...')
-    print('****************************************')
-    print(lista__description[0])
-
-    print('\n****************************************')
-    print('plataformas')
-    print('****************************************')
-    print(plataforma)
-
-    """
+    
     ## datos comunes:
     aux_name = technique +' - '+ nombre_tecnica
     #mejorar para entender si es tecnica o subtecnica si el technique tiene / o no....
@@ -690,59 +586,7 @@ def proceso(technique, esSubtechnique, Technique_number, subTechnique_number):
                 
     CsvToExcel('Tacticas_y_tecnicas')
     
-    """
-
-    print('\n\n----------------------------------------------------------------------')
-    print('----------------------------------------------------------------------')
-    print('PARTES UNICAS PARA PROCEDIMIENTOS, MITIGACIONES Y DETECCIONES....')
-    print('----------------------------------------------------------------------\n')
-
-    print('----------------------------------------------------------------------')
-    print('PROCEDIMIENTOS....')
-    print('----------------------------------------------------------------------\n')
-
-    print('\n****************************************')
-    print('lista de grupos que hay que anadir al excel...')
-    print('****************************************')
-    for i in lista_grupos_nuevos: 
-        print(i)
-
-
-    print('\n****************************************')
-    print('lista nombres nuevos')
-    print('****************************************')
-    print('\n')
-    print('\n')
-    for i in lista_grupos_nuevos_nombre:
-        print(i)
-
-
-    print('\n****************************************')
-    print('lista lista_grupos_nuevos_description nuevos')
-    print('****************************************')
-    print('\n')
-    print('\n')
-    for i in lista_grupos_nuevos_description:
-        print(i)
-
-    print('\n****************************************')
-    print('lista lista_grupos_nuevos_tipos nuevos')
-    print('****************************************')
-    print('\n')
-    print('\n')
-    for i in lista_grupos_nuevos_tipos:
-        print(i)
-
-    print('\n****************************************')
-    print('lista lista_grupos_nuevos_plataforma nuevos')
-    print('****************************************')
-    print('\n')
-    print('\n')
-    for i in lista_grupos_nuevos_plataforma:
-        print(i)
     
-
-    """
 
     y = 0
     for i in lista_grupos_nuevos: 
@@ -754,48 +598,7 @@ def proceso(technique, esSubtechnique, Technique_number, subTechnique_number):
    
     CsvToExcel('Procedimientos')
 
-    """
-    ###########3mitigaciones
-    print('----------------------------------------------------------------------')
-    print('MITIGACIONES....')
-    print('----------------------------------------------------------------------')
-
-
-    print('\n****************************************')
-    print('lista de mitigaciones que hay que anadir al excel...')
-    print('****************************************')
-    for i in lista_mitigaciones_nuevos: 
-        print(i)
-
-
-    print('\n****************************************')
-    print('lista lista_mitigaciones_nuevos_nombre nuevos')
-    print('****************************************')
-    print('\n')
-    print('\n')
-    for i in lista_mitigaciones_nuevos_nombre:
-        a = traducir(i)
-        print(a)
-
-
-    print('\n****************************************')
-    print('lista lista_mitigacion_nuevos_description nuevos')
-    print('****************************************')
-    print('\n')
-    print('\n')
-    for i in lista_mitigacion_nuevos_description:
-        print(i)
-
-
-    print('\n****************************************')
-    print('lista lista_mitigacion_nuevos_tecnicas_mitigadas nuevos')
-    print('****************************************')
-    print('\n')
-    print('\n')
-    for i in lista_mitigacion_nuevos_tecnicas_mitigadas:
-        print(i)
-
-    """
+    
     y = 0
     for i in lista_mitigaciones_nuevos_nombre: 
         a = traducir(i)
@@ -808,29 +611,7 @@ def proceso(technique, esSubtechnique, Technique_number, subTechnique_number):
 
     CsvToExcel('Mitigacion')
 
-    """
-    ###########DETECCIONES
-    print('----------------------------------------------------------------------')
-    print('DETECCIONES....')
-    print('----------------------------------------------------------------------')
-
-
-    print('\n****************************************')
-    print('lista de lista_detecciones_nuevos que hay que anadir al excel...')
-    print('****************************************')
-    for i in lista_detecciones_nuevos: 
-        print(i)
-
-
-    print('\n****************************************')
-    print('lista lista_detecciones_nuevos_nombre nuevos')
-    print('****************************************')
-    print('\n')
-    print('\n')
-    for i in lista_detecciones_nuevos_nombre:
-        a = traducir(i)
-        print(a)
-    """
+    
     y = 0
     for i in lista_detecciones_nuevos_nombre: 
         a = traducir(i)
@@ -843,104 +624,6 @@ def proceso(technique, esSubtechnique, Technique_number, subTechnique_number):
         y = y +1
     CsvToExcel('Deteccion')
 
-
-
-
-###################
-#modificar el excel:
-###################
-
-"""
-# Create a Pandas Excel writer using XlsxWriter as the engine.
-writer = pd.ExcelWriter(nombre_documento_excel, engine='xlsxwriter')
-
-# Convert the dataframe to an XlsxWriter Excel object.
-df_sheet_name.to_excel(writer, sheet_name=nombre_hoja)
-
-lista_grupos_usados.extend(lista_grupos_nuevos)
-lista_NOMBRE.extend(lista_grupos_nuevos_nombre)
-lista_DESCRIPTION.extend(lista_grupos_nuevos_description)
-
-df_sheet_name['IDENTIFICADOR'] = pd.Series(lista_grupos_usados)
-df_sheet_name['NOMBRE'] = pd.Series(lista_NOMBRE)
-df_sheet_name['DESCRIPCIÓN'] = pd.Series(lista_DESCRIPTION)
-
-        
-new_row = [0,1,2,1,2]
-#append row to the dataframe
-df_sheet_name = df_sheet_name.append(new_row, ignore_index=True)
-
-df_sheet_name.to_excel('pandas_to_excel_no_index_header.xlsx', index=False, header=False)
-# Close the Pandas Excel writer and output the Excel file.
-writer.save()
-"""
-
-"""
-############################################################################################################
-#lo mismo pero pasado un .txt con listado de ids de procedimientos.
-#descripcion y mas info de cada grupo: 
-lista_grupos_nuevos_description = list()
-lista_grupos_nuevos_tipos = list()
-lista_grupos_nuevos_plataforma = list()
-file1 = open('nombres.txt', 'r')
-lista_grupos_nuevos = file1.readlines()
-for i in lista_grupos_nuevos:
-    print(i)
-    i = i.strip()
-    try:
-        time.sleep(1)
-        URL = 'https://attack.mitre.org/software/'+str(i) +'/'
-        page = requests.get(URL , verify=False).text
-        t = page.split('<div class="description-body">')[1].split('<p>')[1].split('</p>')[0]
-        tipo = page.split('Type</span>:')[1].split('</div>')[0].strip()
-        description = cleanhtml(t) 
-        description = traducir(description) #
-        lista_grupos_nuevos_description.append(description)
-        lista_grupos_nuevos_tipos.append(tipo)
-        lista_grupos_nuevos_plataforma.append(plataforma)
-    except: 
-        try:
-            time.sleep(1)
-            URL = 'https://attack.mitre.org/groups/'+str(i) +'/'
-            page = requests.get(URL , verify=False).text
-            t = page.split('<div class="description-body">')[1].split('<p>')[1].split('</p>')[0]
-            tipo = page.split('Type</span>:')[1].split('</div>')[0].strip()
-            plataforma = page.split('Platforms</span>:')[1].split('</div>')[0].strip()
-            description = cleanhtml(t) 
-            description = traducir(description)#
-            lista_grupos_nuevos_description.append(description)
-            lista_grupos_nuevos_tipos.append(tipo)
-            lista_grupos_nuevos_plataforma.append(plataforma)
-        except: 
-            lista_grupos_nuevos_description.append('NaN')
-            lista_grupos_nuevos_tipos.append('NaN')
-            lista_grupos_nuevos_plataforma.append('NaN')
-
-print('\n *************************************************************************************************')
-print('\n *************************************************************************************************')
-print('\n *************************************************************************************************')
-print('\n *************************************************************************************************')
-
-print('lista lista_grupos_nuevos_description nuevos')
-print('\n')
-print('\n')
-for i in lista_grupos_nuevos_description:
-    print(i)
-
-print('\n **********')
-print('lista lista_grupos_nuevos_tipos nuevos')
-print('\n')
-print('\n')
-for i in lista_grupos_nuevos_tipos:
-    print(i)
-
-print('\n **********')
-print('lista lista_grupos_nuevos_plataforma nuevos')
-print('\n')
-print('\n')
-for i in lista_grupos_nuevos_plataforma:
-    print(i)
-"""
 
 
 
@@ -1324,6 +1007,30 @@ def Mitigation_info_txtFile(Fichero):
 
 
 def Tecnicas_info_txtFile(Fichero):
+
+
+    ##creacion de csv para guardar resultados (solo primera vez, luego quitar):
+    header1 = ['TACTICA', 'DESCRIPCIÓN TÁCTICA', 'TÉCNICA', 'DESCRIPCIÓN TÉCNICA', 'SUB-TÉCNICA', 'DESCRIPCIÓN SUB-TÉCNICA', 'PLATAFORMA', 'PROCEDIMIENTOS RELACIONADOS', 'MITIGACIONES RELACIONADAS', 'DETECCIONES RELACIONADAS', 'DEFENSAS QUE SUPERA', 'PERMISOS REQUERIDOS', 'SE PUEDE USAR EN REMOTO']
+    header2 = ['IDENTIFICADOR', 'MITIGACIÓN', 'DESCRIPCIÓN', 'CONTROLES RELACIONADOS', 'TÉCNICAS MITIGADAS']
+    header3 = ['IDENTIFICADOR', 'DATA COMPONENT', 'DESCRIPCIÓN DATA COMPONENT', 'DATA SOURCE', 'DESCRIPCIÓN DATA SOURCE', 'COLLECTION LAYER', 'TECNOLOGÍA', 'PLATAFORMA']
+    header4 = ['IDENTIFICADOR', 'NOMBRE', 'DESCRIPCIÓN', 'SOFTWARE ASOCIADO', 'TIPO', 'TECNOLOGÍA', 'ADICIONAL']
+
+    with open('Tacticas_y_tecnicas.csv', 'w', encoding='UTF8') as f:
+        writer = csv.writer(f)
+        writer.writerow(header1)
+    with open('Mitigacion.csv', 'w', encoding='UTF8') as f:
+        writer = csv.writer(f)
+        writer.writerow(header2)
+    with open('Deteccion.csv', 'w', encoding='UTF8') as f:
+        writer = csv.writer(f)
+        writer.writerow(header3)
+    with open('Procedimientos.csv', 'w', encoding='UTF8') as f:
+        writer = csv.writer(f)
+        writer.writerow(header4)
+
+
+    ####
+
     #leer lista de tecnicas:
     file1 = open(Fichero+'.txt', 'r')
     lista_tecnicas = file1.readlines()
